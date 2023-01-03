@@ -3,16 +3,11 @@ import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, f1_score, roc_auc_score
 from sklearn.model_selection import train_test_split
-from sklearn.externals import joblib
+import joblib
 import mlflow
 import sys
-sys.path.append('../..')
-from bigdataproject.src.data import load_data
 
-def train_model_randomForest(n_estimators, max_depth, max_features, min_samples_leaf, min_samples_split, random_state=42,test_size=0.2, save_model=True, model_name='model.pkl',record_model=True, mlflow_experiment_name='random_forest'):
-    # Load data
-    df = load_data()
-
+def train_model_randomForest(df,n_estimators, max_depth, max_features, min_samples_leaf, min_samples_split, random_state=42,test_size=0.2, save_model=True, model_name='model.pkl',record_model=True, mlflow_experiment_name='random_forest'):
     # Split data
     X = df.drop('TARGET', axis=1)
     y = df['TARGET']

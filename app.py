@@ -5,6 +5,8 @@ import pandas as pd
 import numpy as np
 import warnings
 warnings.filterwarnings("ignore")
+import sys
+sys.path.append('bigdataproject')
 
 from src.data.make_dataset import load_processed_data
 from src.visualization.visualize import count_target_value, age_of_client_at_time_application, age_of_client_deemed_capable_at_time_application, age_of_client_deemed_incapable_at_time_application, employment_at_time_application, employment_at_time_Application_deemed_capable, employment_at_time_Application_deemed_incapable
@@ -12,7 +14,8 @@ from src.models.predict_model import load_model, predict_from_json
 from src.models.train_model import train_model_randomForest
 
 app = Flask(__name__)
-model = load_model()
+model = load_model('random_forest.pkl')
+df = load_processed_data()
 
 @app.route('/api', methods=['GET'])
 def api():
@@ -24,31 +27,31 @@ def visualize():
 
 @app.route('/api/visualize/count_target_value', methods=['GET'])
 def count_target_value_api():
-    return jsonify(count_target_value())
+    return jsonify(count_target_value(df))
 
 @app.route('/api/visualize/age_of_client_at_time_application', methods=['GET'])
 def age_of_client_at_time_application_api():
-    return jsonify(age_of_client_at_time_application())
+    return jsonify(age_of_client_at_time_application(df))
 
 @app.route('/api/visualize/age_of_client_deemed_capable_at_time_application', methods=['GET'])
 def age_of_client_deemed_capable_at_time_application_api():
-    return jsonify(age_of_client_deemed_capable_at_time_application())
+    return jsonify(age_of_client_deemed_capable_at_time_application(df))
 
 @app.route('/api/visualize/age_of_client_deemed_incapable_at_time_application', methods=['GET'])
-def age_of_client_deemed_incapable_at_time_application_api():
+def age_of_client_deemed_incapable_at_time_application_api(df):
     return jsonify(age_of_client_deemed_incapable_at_time_application())
 
 @app.route('/api/visualize/employment_at_time_application', methods=['GET'])
 def employment_at_time_application_api():
-    return jsonify(employment_at_time_application())
+    return jsonify(employment_at_time_application(df))
 
 @app.route('/api/visualize/employment_at_time_Application_deemed_capable', methods=['GET'])
 def employment_at_time_Application_deemed_capable_api():
-    return jsonify(employment_at_time_Application_deemed_capable())
+    return jsonify(employment_at_time_Application_deemed_capable(df))
 
 @app.route('/api/visualize/employment_at_time_Application_deemed_incapable', methods=['GET'])
 def employment_at_time_Application_deemed_incapable_api():
-    return jsonify(employment_at_time_Application_deemed_incapable())
+    return jsonify(employment_at_time_Application_deemed_incapable(df))
 
 @app.route('/api/models', methods=['GET'])
 def models():
@@ -72,7 +75,7 @@ def train_randomForest(n_estimators, max_depth, max_features, min_samples_leaf, 
     # get data from request
     # data = request.get_json()
     # train model
-    train_model_randomForest(n_estimators, max_depth, max_features, min_samples_leaf, min_samples_split, random_state,test_size, save_model, model_name,record_model, mlflow_experiment_name)
+    train_model_randomForest(df,n_estimators, max_depth, max_features, min_samples_leaf, min_samples_split, random_state,test_size, save_model, model_name,record_model, mlflow_experiment_name)
     # return response
     return jsonify({'message': 'Model Trained'})
 
