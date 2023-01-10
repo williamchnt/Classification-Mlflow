@@ -10,11 +10,11 @@ sys.path.append('bigdataproject')
 
 from src.data.make_dataset import load_train_processed_data, load_test_processed_data
 from src.visualization.visualize import count_target_value, age_of_client_at_time_application, age_of_client_deemed_capable_at_time_application, age_of_client_deemed_incapable_at_time_application, employment_at_time_application, employment_at_time_Application_deemed_capable, employment_at_time_Application_deemed_incapable
-from src.models.predict_model import load_model, predict_from_json
+from src.models.predict_model import load_model, predict_from_json,predict_from_json_model_name,predict_from_json_model_name_test
 from src.models.train_model import train_model_randomForest,train_model_randomForest_from_json
 
 app = Flask(__name__)
-model = load_model('random_forest.pkl')
+# model = load_model('random_forest.pkl')
 df_train = load_train_processed_data()
 df_test = load_test_processed_data()
 df = pd.concat([df_train, df_test], axis=0)
@@ -49,12 +49,44 @@ def employment_at_time_Application_deemed_incapable_api():
 
 @app.route('/api/models/decision_tree/predict', methods=['POST'])
 def predict():
-    # get data from request
-    data = request.get_json()
-    # predict
-    prediction = predict_from_json(model, data)
-    # return response
-    return jsonify({'prediction': prediction})
+    try:
+        # get data from request
+        data = request.get_json()
+
+        try:
+            model_name = data['model_name']
+            # predict
+            prediction = predict_from_json_model_name(model_name, data)
+        except:
+            prediction = predict_from_json_model_name(data)
+        
+        # return response
+        return jsonify({'prediction': prediction})
+    except Exception as e:
+        return jsonify({'message': "Model Can't predict", 'status': 'failed', 'error': str(e)})
+
+@app.route('/api/models/decision_tree/predict_test', methods=['POST'])
+def predict_test():
+    try:
+        try:
+            # get data from request
+            data = request.get_json()
+            
+        except:
+            pass
+
+        try:
+            model_name = data['model_name']
+            row = data['row']
+            # predict
+            prediction = predict_from_json_model_name_test(row,model_name)
+        except:
+            prediction = predict_from_json_model_name_test()
+        
+        # return response
+        return jsonify({'prediction': str(prediction)})
+    except Exception as e:
+        return jsonify({'message': "Model Can't predict", 'status': 'failed', 'error': str(e)})
 
 @app.route('/api/models/decision_tree/train', methods=['POST'])
 def train_randomForest():
