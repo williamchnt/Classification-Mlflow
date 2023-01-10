@@ -1,0 +1,6 @@
+artifact_location: file:///C:/Users/nostr/OneDrive/Documents/GitHub/BigDataAPp-Project/mlruns/123365047053491680
+creation_time: 1673349016227
+experiment_id: '123365047053491680'
+last_update_time: 1673349016227
+lifecycle_stage: active
+name: random_forest_test

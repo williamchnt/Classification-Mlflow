@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/nostr/OneDrive/Documents/GitHub/BigDataAPp-Project/mlruns/123365047053491680/4aadfbfd6ece480587a760e8ec573ada/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '123365047053491680'
+lifecycle_stage: active
+run_id: 4aadfbfd6ece480587a760e8ec573ada
+run_name: treasured-koi-973
+run_uuid: 4aadfbfd6ece480587a760e8ec573ada
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1673349251969
+status: 1
+tags: []
+user_id: nostr

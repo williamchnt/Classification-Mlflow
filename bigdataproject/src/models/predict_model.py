@@ -3,7 +3,7 @@ import joblib
 import numpy as np
 
 def load_model(model_name):
-    model = joblib.load('../../models/'+model_name)
+    model = joblib.load('bigdataproject/models/'+model_name)
     return model
 
 # predict

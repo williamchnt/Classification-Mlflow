@@ -8,22 +8,16 @@ warnings.filterwarnings("ignore")
 import sys
 sys.path.append('bigdataproject')
 
-from src.data.make_dataset import load_processed_data
+from src.data.make_dataset import load_train_processed_data, load_test_processed_data
 from src.visualization.visualize import count_target_value, age_of_client_at_time_application, age_of_client_deemed_capable_at_time_application, age_of_client_deemed_incapable_at_time_application, employment_at_time_application, employment_at_time_Application_deemed_capable, employment_at_time_Application_deemed_incapable
 from src.models.predict_model import load_model, predict_from_json
-from src.models.train_model import train_model_randomForest
+from src.models.train_model import train_model_randomForest,train_model_randomForest_from_json
 
 app = Flask(__name__)
 model = load_model('random_forest.pkl')
-df = load_processed_data()
-
-@app.route('/api', methods=['GET'])
-def api():
-    return jsonify({'message': 'Welcome to the API'})
-
-@app.route('/api/visualize', methods=['GET'])
-def visualize():
-    return jsonify({'message': 'Welcome to the Visualization API'})
+df_train = load_train_processed_data()
+df_test = load_test_processed_data()
+df = pd.concat([df_train, df_test], axis=0)
 
 @app.route('/api/visualize/count_target_value', methods=['GET'])
 def count_target_value_api():
@@ -53,14 +47,6 @@ def employment_at_time_Application_deemed_capable_api():
 def employment_at_time_Application_deemed_incapable_api():
     return jsonify(employment_at_time_Application_deemed_incapable(df))
 
-@app.route('/api/models', methods=['GET'])
-def models():
-    return jsonify({'message': 'Welcome to the Models API'})
-
-@app.route('/api/models/decision_tree', methods=['GET'])
-def decision_tree():
-    return jsonify({'message': 'Welcome to the Decision Tree API'})
-
 @app.route('/api/models/decision_tree/predict', methods=['POST'])
 def predict():
     # get data from request
@@ -70,14 +56,29 @@ def predict():
     # return response
     return jsonify({'prediction': prediction})
 
-@app.route('/api/models/decision_tree/train', methods=['GET'])
-def train_randomForest(n_estimators, max_depth, max_features, min_samples_leaf, min_samples_split, random_state=42,test_size=0.2, save_model=True, model_name='model.pkl',record_model=True, mlflow_experiment_name='random_forest'):
+@app.route('/api/models/decision_tree/train', methods=['POST'])
+def train_randomForest():
     # get data from request
-    # data = request.get_json()
+    data = request.get_json()
+
+    try:
+        model_name = data['model_name']
+    except:
+        pass
+
+    try:
+        mlflow_experiment_name = data['mlflow_experiment_name']
+    except:
+        pass
+
     # train model
-    train_model_randomForest(df,n_estimators, max_depth, max_features, min_samples_leaf, min_samples_split, random_state,test_size, save_model, model_name,record_model, mlflow_experiment_name)
-    # return response
-    return jsonify({'message': 'Model Trained'})
+    try:
+        train_model_randomForest_from_json(df_train,data)
+        # return response
+        return jsonify({'message': 'Model Trained', 'status': 'success', 'model name': model_name,'mlflow_experiment_name':mlflow_experiment_name})
+    except Exception as e:
+        return jsonify({'message': 'Model Not Trained', 'status': 'failed', 'error': str(e)})
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',debug=True,port=8081)
