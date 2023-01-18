@@ -13,4 +13,8 @@ Medina  HADJEM
 
 ## Part I
 
+### Code
+
 Voici le lien de notre github de notre projet [BigDataAPp-Project](https://github.com/williamchnt/BigDataAPp-Project).
+
+### Random Forest
