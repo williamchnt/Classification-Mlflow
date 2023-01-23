@@ -15,13 +15,20 @@ Medina  HADJEM
 
 ### Code
 
-Voici le lien de notre github de notre projet [BigDataAPp-Project](https://github.com/williamchnt/BigDataAPp-Project).
+ 
+
+We used Git via Github for collaboration with all group members.  In order to work on the same versions of the libraries we used an anaconda environment.
+This is the github link of our project [BigDataAPp-Project](https://github.com/williamchnt/BigDataAPp-Project).
+
+For the organization of the files we have used the CookieCuter template that we have adapted to our needs.
 
 We separated our ML project workflow into different scripts
 
 Documentation library used: 
 
 ### Random Forest
+
+We started with a random forest model because it is one of the most complete and suitable for classification
 
 ## Part III
 
