@@ -21,6 +21,8 @@ To manage the versions of the libraries, we decided to use an Anaconda environme
 
 As for the organization of the files, we decided to use the CookieCutter template. This template allowed us to structure our project in an efficient way and have a clear and easy to understand file system for all team members. We customized this template to our needs by creating folders and subfolders for each part of the project.
 
+### Random Forest
+
 Finally, for the classification model, we decided to use a random forest model. This model is one of the most complete and best suited for classification. It allows us to process the data efficiently and predict the expected results with great accuracy. We spent a lot of time optimizing the parameters of this model in order to obtain the best possible results.
 
 In summary, we have implemented tools and methods to facilitate collaboration between our team members and effectively manage the different parts of our project. This allowed us to work efficiently and complete our project on time.
