@@ -51,9 +51,6 @@ http://127.0.0.1:5000/api/models/decision_tree/predict_test -> for train a model
      "test_size",
      "random_state_split"
 
-### Results
-
-
 ## Part III
 
 ### SHAP library
