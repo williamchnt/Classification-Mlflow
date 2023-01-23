@@ -15,20 +15,17 @@ Medina  HADJEM
 
 ### Code
 
- 
+In the first part of our project, we introduced tools and methods to facilitate collaboration between our team members. We chose to use Git over Github to manage the versions of our code and the different documents that were created. This allowed us to work on the same versions of the libraries and easily share changes between team members.
 
-We used Git via Github for collaboration with all group members.  In order to work on the same versions of the libraries we used an anaconda environment.
+To manage the versions of the libraries, we decided to use an Anaconda environment. This environment allows us to manage the dependencies between the different libraries used in our project and easily install them on each team member's computer. This allowed us to work with stable versions of the libraries and avoid version conflicts.
+
+As for the organization of the files, we decided to use the CookieCutter template. This template allowed us to structure our project in an efficient way and have a clear and easy to understand file system for all team members. We customized this template to our needs by creating folders and subfolders for each part of the project.
+
+Finally, for the classification model, we decided to use a random forest model. This model is one of the most complete and best suited for classification. It allows us to process the data efficiently and predict the expected results with great accuracy. We spent a lot of time optimizing the parameters of this model in order to obtain the best possible results.
+
+In summary, we have implemented tools and methods to facilitate collaboration between our team members and effectively manage the different parts of our project. This allowed us to work efficiently and complete our project on time.
+
 This is the github link of our project [BigDataAPp-Project](https://github.com/williamchnt/BigDataAPp-Project).
-
-For the organization of the files we have used the CookieCuter template that we have adapted to our needs.
-
-We separated our ML project workflow into different scripts
-
-Documentation library used: 
-
-### Random Forest
-
-We started with a random forest model because it is one of the most complete and suitable for classification
 
 ## Part III
 
