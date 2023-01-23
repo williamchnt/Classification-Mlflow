@@ -31,6 +31,11 @@ This is the github link of our project [BigDataAPp-Project](https://github.com/w
 
 ## Part II
 
+We made 4 notebooks to explore the data and make the models by creating python functions accessible via a Flask API.
+We can launch the API with the command Fask run.
+
+http://127.0.0.1:5000/api/models/decision_tree/predict -> method to predict data, the parameters are: the set of features and the name of the model
+
 ### Results
 
 
