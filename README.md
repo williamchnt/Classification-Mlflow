@@ -38,7 +38,18 @@ http://127.0.0.1:5000/api/models/decision_tree/predict -> method to predict data
 
 http://127.0.0.1:5000/api/models/decision_tree/predict_test -> for prediction on the test dataset, parameters: "model_name", "row": row number of the dataset that we want to predict
 
-
+http://127.0.0.1:5000/api/models/decision_tree/predict_test -> for train a model (Random forest) -> "n_estimators": 100,
+     "max_depth",
+     "max_features",
+     "min_samples_leaf",
+     "min_samples_split",
+     "save_model",
+     "random_state",
+     "model_name" ,
+     "record_model",
+     "mlflow_experiment_name",
+     "test_size",
+     "random_state_split"
 
 ### Results
 
